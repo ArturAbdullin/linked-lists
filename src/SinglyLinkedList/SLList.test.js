@@ -19,6 +19,16 @@ function mergeSorted(arr1, arr2) {
   return SLList.mergeSorted(list1, list2);
 }
 
+/**
+ *
+ * @param {number[]} array
+ */
+function sortList(array) {
+  const list = SLList.fromArray(array);
+  list.sort();
+  return list;
+}
+
 test("check initialization", () => {
   expect(initSLListFromArray([3, 1, 2, 0, 1]).toArray()).toStrictEqual([
     3, 1, 2, 0, 1,
@@ -28,5 +38,11 @@ test("check initialization", () => {
 test("check mergeSorted", () => {
   expect(mergeSorted([1, 3, 5], [2, 4, 6, 8]).toArray()).toStrictEqual([
     1, 2, 3, 4, 5, 6, 8,
+  ]);
+});
+
+test("check sort method", () => {
+  expect(sortList([4, 2, 1, 0, 1, 6, 7]).toArray()).toStrictEqual([
+    0, 1, 1, 2, 4, 6, 7,
   ]);
 });
