@@ -44,7 +44,7 @@ class SLList {
         head2 = head2.next;
       }
     }
-    
+
     if (head1) {
       while (head1) {
         list.addNode(head1.value);
@@ -98,6 +98,9 @@ class SLList {
    */
   sort() {
     this.#head = this.#mergeSort(this.#head);
+    this.#updateTail();
+  }
+
   reverse() {
     let prevNode = null;
     let currNode = this.#head;
@@ -105,7 +108,13 @@ class SLList {
       [currNode.next, currNode, prevNode] = [prevNode, currNode.next, currNode];
     }
     this.#head = prevNode;
+    this.#updateTail();
   }
+
+  /**
+   * Update the tail node of the list (after sorting or reversing)
+   */
+  #updateTail() {
     while (this.#tail && this.#tail.next) {
       this.#tail = this.#tail.next;
     }
@@ -113,7 +122,7 @@ class SLList {
 
   /**
    * Separate a singly-linked list in the middle and return the right part
-   * @param {SLListNode} head 
+   * @param {SLListNode} head
    * @returns {SLListNode} the right part of the separation
    */
   #separateMiddle(head) {
@@ -130,8 +139,8 @@ class SLList {
   }
 
   /**
-   * 
-   * @param {SLListNode} head 
+   *
+   * @param {SLListNode} head
    */
   #mergeSort(head) {
     if (!head || !head.next) return head;
@@ -145,8 +154,8 @@ class SLList {
 
   /**
    * Merge two sorted singly-linked list with the given head nodes
-   * @param {SLListNode} head1 
-   * @param {SLListNode} head2 
+   * @param {SLListNode} head1
+   * @param {SLListNode} head2
    * @returns {SLListNode} the head of the merged list
    */
   #mergeAlreadySorted(head1, head2) {
@@ -161,7 +170,7 @@ class SLList {
       currNode = currNode.next;
     }
 
-    head1 ? currNode.next = head1 : currNode.next = head2;
+    head1 ? (currNode.next = head1) : (currNode.next = head2);
 
     return preHead.next;
   }
@@ -180,3 +189,7 @@ class SLList {
 }
 
 module.exports = SLList;
+
+let list = SLList.fromArray([3, 2, 1]);
+list.reverse();
+console.log(list.toArray());
