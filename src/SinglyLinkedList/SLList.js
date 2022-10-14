@@ -172,8 +172,3 @@ class SLList {
 }
 
 module.exports = SLList;
-
-let list = SLList.fromArray([4,2,1,0]);
-list.sort();
-console.log(list.toArray());
-console.log(list.tail);
