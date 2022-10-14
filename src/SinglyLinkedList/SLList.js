@@ -28,7 +28,7 @@ class SLList {
 
   /**
    *
-   * @param {number} node
+   * @param {number} value
    * @returns {SLListNode} new list tail
    */
   addNode(value) {
