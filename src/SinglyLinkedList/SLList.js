@@ -27,6 +27,40 @@ class SLList {
   }
 
   /**
+   * Merge two sorted lists
+   * @param {SLList} list1
+   * @param {SLList} list2
+   * @returns {SLList} merged singly-linked list
+   */
+  static mergeSorted(list1, list2) {
+    const list = new SLList();
+    let [head1, head2] = [list1.head, list2.head];
+    while (head1 && head2) {
+      if (head1.value < head2.value) {
+        list.addNode(head1.value);
+        head1 = head1.next;
+      } else {
+        list.addNode(head2.value);
+        head2 = head2.next;
+      }
+    }
+    
+    if (head1) {
+      while (head1) {
+        list.addNode(head1.value);
+        head1 = head1.next;
+      }
+    } else if (head2) {
+      while (head2) {
+        list.addNode(head2.value);
+        head2 = head2.next;
+      }
+    }
+
+    return list;
+  }
+
+  /**
    *
    * @param {number} value
    * @returns {SLListNode} new list tail
