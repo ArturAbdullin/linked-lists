@@ -101,6 +101,9 @@ class SLList {
     this.#updateTail();
   }
 
+  /**
+   * Reverse the singly-linked list
+   */
   reverse() {
     let prevNode = null;
     let currNode = this.#head;
