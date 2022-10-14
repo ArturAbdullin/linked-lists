@@ -29,6 +29,16 @@ function sortList(array) {
   return list;
 }
 
+/**
+ *
+ * @param {number[]} array
+ */
+function reverseList(array) {
+  const list = SLList.fromArray(array);
+  list.reverse();
+  return list;
+}
+
 test("check initialization", () => {
   expect(initSLListFromArray([3, 1, 2, 0, 1]).toArray()).toStrictEqual([
     3, 1, 2, 0, 1,
@@ -45,4 +55,8 @@ test("check sort method", () => {
   expect(sortList([4, 2, 1, 0, 1, 6, 7]).toArray()).toStrictEqual([
     0, 1, 1, 2, 4, 6, 7,
   ]);
+});
+
+test("check reverse method", () => {
+  expect(reverseList([3, 2, 1]).toArray()).toStrictEqual([1, 2, 3]);
 });
