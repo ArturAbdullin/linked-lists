@@ -92,6 +92,72 @@ class SLList {
     return array;
   }
 
+  /**
+   * Sort this singly-linked list and return a new head
+   * @returns {SLListNode} new head
+   */
+  sort() {
+    this.#head = this.#mergeSort(this.#head);
+    while (this.#tail && this.#tail.next) {
+      this.#tail = this.#tail.next;
+    }
+  }
+
+  /**
+   * Separate a singly-linked list in the middle and return the right part
+   * @param {SLListNode} head 
+   * @returns {SLListNode} the right part of the separation
+   */
+  #separateMiddle(head) {
+    if (head == null || head.next == null) return head;
+    /** @type {SLListNode | null} */
+    let prev = null;
+    let [slow, fast] = [head, head];
+    while (fast && fast.next) {
+      prev = slow;
+      [slow, fast] = [slow.next, fast.next.next];
+    }
+    prev.next = null;
+    return slow;
+  }
+
+  /**
+   * 
+   * @param {SLListNode} head 
+   */
+  #mergeSort(head) {
+    if (!head || !head.next) return head;
+    let leftPartHead = head;
+    let rightPartHead = this.#separateMiddle(head);
+    leftPartHead = this.#mergeSort(leftPartHead);
+    rightPartHead = this.#mergeSort(rightPartHead);
+
+    return this.#mergeAlreadySorted(leftPartHead, rightPartHead);
+  }
+
+  /**
+   * Merge two sorted singly-linked list with the given head nodes
+   * @param {SLListNode} head1 
+   * @param {SLListNode} head2 
+   * @returns {SLListNode} the head of the merged list
+   */
+  #mergeAlreadySorted(head1, head2) {
+    const preHead = new SLListNode();
+    let currNode = preHead;
+    while (head1 && head2) {
+      if (head1.value < head2.value) {
+        [currNode.next, head1] = [head1, head1.next];
+      } else {
+        [currNode.next, head2] = [head2, head2.next];
+      }
+      currNode = currNode.next;
+    }
+
+    head1 ? currNode.next = head1 : currNode.next = head2;
+
+    return preHead.next;
+  }
+
   get head() {
     return this.#head;
   }
@@ -106,3 +172,8 @@ class SLList {
 }
 
 module.exports = SLList;
+
+let list = SLList.fromArray([4,2,1,0]);
+list.sort();
+console.log(list.toArray());
+console.log(list.tail);
