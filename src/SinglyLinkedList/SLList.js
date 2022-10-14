@@ -192,7 +192,3 @@ class SLList {
 }
 
 module.exports = SLList;
-
-let list = SLList.fromArray([3, 2, 1]);
-list.reverse();
-console.log(list.toArray());
