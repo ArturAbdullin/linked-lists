@@ -98,6 +98,14 @@ class SLList {
    */
   sort() {
     this.#head = this.#mergeSort(this.#head);
+  reverse() {
+    let prevNode = null;
+    let currNode = this.#head;
+    while (currNode) {
+      [currNode.next, currNode, prevNode] = [prevNode, currNode.next, currNode];
+    }
+    this.#head = prevNode;
+  }
     while (this.#tail && this.#tail.next) {
       this.#tail = this.#tail.next;
     }
