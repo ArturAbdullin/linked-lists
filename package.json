@@ -1,0 +1,25 @@
+{
+  "name": "linked-lists",
+  "version": "1.0.0",
+  "description": "linked lists study",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArturAbdullin/linked-lists.git"
+  },
+  "keywords": [
+    "linked-list",
+    "singly-linked-list",
+    "slow-fast",
+    "merge-sort"
+  ],
+  "author": "Artur Abdullin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArturAbdullin/linked-lists/issues"
+  },
+  "homepage": "https://github.com/ArturAbdullin/linked-lists#readme"
+}
