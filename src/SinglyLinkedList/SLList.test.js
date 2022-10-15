@@ -39,6 +39,14 @@ function reverseList(array) {
   return list;
 }
 
+/**
+ * @param {number[]} array 
+ */
+function isListAPalindrome(array) {
+  const list = SLList.fromArray(array);
+  return list.isPalindrome();
+}
+
 test("check initialization", () => {
   expect(initSLListFromArray([3, 1, 2, 0, 1]).toArray()).toStrictEqual([
     3, 1, 2, 0, 1,
@@ -60,3 +68,9 @@ test("check sort method", () => {
 test("check reverse method", () => {
   expect(reverseList([3, 2, 1]).toArray()).toStrictEqual([1, 2, 3]);
 });
+
+test("check isPalindrome method", () => {
+  expect(isListAPalindrome([1,2,2,1])).toBe(true);
+  expect(isListAPalindrome([1,0,0,1,0,0,1])).toBe(true);
+  expect(isListAPalindrome([1,2,3])).toBe(false);
+})
