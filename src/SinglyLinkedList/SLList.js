@@ -118,6 +118,7 @@ class SLList {
    * Update the tail node of the list (after sorting or reversing)
    */
   #updateTail() {
+    this.#tail = this.#head;
     while (this.#tail && this.#tail.next) {
       this.#tail = this.#tail.next;
     }
