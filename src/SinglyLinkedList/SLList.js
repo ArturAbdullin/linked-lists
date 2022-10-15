@@ -115,6 +115,51 @@ class SLList {
   }
 
   /**
+   * Check if the list is a palindrome
+   * @returns {boolean}
+   */
+  isPalindrome() {
+    const rightPartHead = this.#separateMiddle(this.#head);
+
+    /** @param {SLListNode} node */
+    function reversePart(node) {
+      let prevNode = null;
+      let currNode = node;
+
+      while (currNode) {
+        [currNode.next, prevNode, currNode] = [
+          prevNode,
+          currNode,
+          currNode.next,
+        ];
+      }
+
+      return prevNode;
+    }
+
+    let rightPartReversed = reversePart(rightPartHead);
+
+    let dummy1 = this.#head;
+    let dummy2 = rightPartReversed;
+    let result = true;
+    while (dummy1 && dummy2) {
+      if (dummy1.value !== dummy2.value) {
+        result = false;
+        break;
+      }
+      [dummy1, dummy2] = [dummy1.next, dummy2.next];
+    }
+
+    rightPartReversed = reversePart(rightPartReversed);
+
+    this.#updateTail();
+    this.#tail.next = rightPartHead;
+    this.#updateTail();
+
+    return result;
+  }
+
+  /**
    * Update the tail node of the list (after sorting or reversing)
    */
   #updateTail() {
